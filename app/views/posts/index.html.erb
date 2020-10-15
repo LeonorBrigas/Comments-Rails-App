@@ -1,0 +1,27 @@
+<div class="header">
+  <div class="container">
+    <h1><strong>My notes</strong> <i class="fas fa-sticky-note"></i></h1>
+  </div>
+</div>
+
+<div class="main">
+  <div class="container">
+
+    <!-- Form goes here -->
+    <%= form_for(@post) do |f| %>
+    <%= f.text_field :comment, :placeholder => "Comment" %>
+    <%= f.submit "Add", :class =>'btn' %>
+    <% end %>
+
+
+    <ul class="comments">
+ <!--      <li>Have you felt it?</li> -->
+      <% @all_posts.each do |post| %>
+      <li><%= post.comment %><%= link_to post_path(post), method: :delete, data: { confirm: "Are you sure?"} do %>
+            <i class="far fa-trash-alt"></i></li>
+          <% end %>
+      <% end %>
+    </ul>
+
+  </div>
+</div>
